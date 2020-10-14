@@ -1,3 +1,3 @@
-const {getHolidayListOfMonth, getHolidayListOfYear} = require('./index');
+const {getHolidayList} = require('./index');
 
-(async ()=>{console.log(await getHolidayListOfYear(2021))})();
+(async ()=>{console.log(await getHolidayList(2021))})();
