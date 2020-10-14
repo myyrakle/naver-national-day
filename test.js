@@ -1,3 +1,3 @@
-const {getNationalDay} = require('./index');
+const {getHolidayListOfMonth, getHolidayListOfYear} = require('./index');
 
-(async ()=>{console.log(getNationalDay())})();
+(async ()=>{console.log(await getHolidayListOfYear(2021))})();
