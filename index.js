@@ -39,4 +39,33 @@ async function getHolidayList(year, month){
     
 }
 
+// 네이버 API로 공휴일 여부 확인
+async function isHolidayListByNaverCalendar(
+  year: number,
+  month: number,
+  day: number
+) {
+  const LINK = "https://search.naver.com/p/csearch/content/qapirender.nhn";
+
+  const response = await axios.get(LINK, {
+    params: {
+      where: "nexearch",
+      key: "CalendarAnniversary",
+      pkid: 134,
+      q: `${year}${month}월`,
+    },
+  });
+
+  const theDay = response.data.openCalendar.daysList.find((e) => {
+    const ymd = `${year}${String(month).padStart(2, "0")}${String(day).padStart(
+      2,
+      "0"
+    )}`;
+
+    return e.solarDate == ymd;
+  });
+
+  return theDay.dayOff == "true";
+}
+
 module.exports = {getHolidayList};
